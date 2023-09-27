@@ -1,0 +1,15 @@
+select name
+from students 
+  where 
+     marks > 75
+Order by RIGHT (name, 3) asc, ID asc;   
+
+
+-- Second way for the same problem
+select name
+from students 
+  where 
+     marks > 75
+Order by substr(name, Length(name)-2), ID;   
+
+

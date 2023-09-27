@@ -1,0 +1,15 @@
+select S.hacker_id, H.name
+from Submissions as S
+     JOIN Hackers as H ON S.hacker_id = H.hacker_id
+     JOIN Challenges as C ON S.challenge_id = C.challenge_id
+     JOIN Difficulty as D ON C.difficulty_level = D.difficulty_level
+
+Where
+   S.score = D.score
+Group by S.hacker_id, H.name
+-- Here we can also use another way to GROUP BY the results as shown below
+-- Here Group by 1,2 means the first and second column mentioned just after "select"
+Group by 1, 2
+
+Having count(C.challenge_id)>1
+Order by count(C.challenge_id)desc, S.hacker_id;

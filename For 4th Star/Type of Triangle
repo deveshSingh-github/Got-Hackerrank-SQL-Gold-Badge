@@ -1,0 +1,16 @@
+select 
+     CASE
+        WHEN A+B<=C or A+C<=B or B+C<=A THEN 'Not A Triangle'
+        WHEN A = B AND B = C THEN 'Equilateral'
+        WHEN A=B or A=C THEN 'Isosceles'
+        ELSE 'Scalene'
+       END as triangle_type
+     from triangles;  
+
+     -- Other way to code for the same
+SELECT
+  IF(A + B <= C OR A + C <= B OR B + C <= A, 'Not A Triangle',
+     IF(A = B AND B = C, 'Equilateral',
+        IF(A = B OR B = C OR A = C, 'Isosceles', 'Scalene'))) AS triangle_type
+     
+     FROM TRIANGLES;

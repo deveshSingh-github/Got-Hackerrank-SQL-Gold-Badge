@@ -1,0 +1,13 @@
+SELECT 
+    MAX(months * salary) AS max_earnings, 
+    COUNT(employee_id) AS num_employees
+FROM employee
+WHERE months * salary = (SELECT MAX(months * salary) FROM Employee);
+
+
+-- Another way with a little modification
+SELECT 
+    MAX(months * salary) , COUNT(employee_id) 
+FROM employee
+WHERE 
+     months * salary = (SELECT MAX(months * salary) FROM Employee);

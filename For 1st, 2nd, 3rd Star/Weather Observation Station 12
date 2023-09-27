@@ -1,0 +1,6 @@
+select distinct city from station
+where
+    (city NOT REGEXP '^[aeiou]')
+    AND 
+    (city NOT REGEXP '[aeiou]$')
+    GROUP by city;

@@ -1,0 +1,14 @@
+select SUM(city.population)
+from city 
+JOIN country 
+ON country.code = city.countrycode
+where
+   country.continent = 'Asia';
+
+
+   -- another way
+
+SELECT NAME FROM CITY 
+WHERE 
+    COUNTRYCODE IN ( SELECT CODE FROM COUNTRY WHERE CONTINENT = "Africa" ) ;
+
