@@ -1,3 +1,0 @@
-select distinct city from station 
-where city REGEXP '[aeiouAEIOU]$';
-/* just experimenting with GitHub, means learning it*/\
