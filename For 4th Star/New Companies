@@ -1,0 +1,22 @@
+/* 
+   It was a nice question, with this question, I joined two table by using "WHERE" 
+   statement for the first time.
+   
+   */
+
+select company_code, founder,
+
+(select COUNT(distinct lead_manager_code) from Lead_Manager lm
+WHERE lm.company_code = c.company_code) clm,
+
+(select COUNT(distinct senior_manager_code) from Senior_Manager sm
+WHERE sm.company_code = c.company_code) csm,
+
+(select COUNT(distinct manager_code) from Manager m
+WHERE m.company_code = c.company_code) cm,
+
+(select COUNT(distinct employee_code) from Employee e
+WHERE e.company_code = c.company_code) ce   
+
+from Company c
+Order by company_code;

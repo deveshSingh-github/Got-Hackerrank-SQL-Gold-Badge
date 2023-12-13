@@ -1,0 +1,22 @@
+/* by using simple query  */
+
+create table numbers( n int ); 
+insert into numbers values (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),
+                           (11),(12),(13),(14),(15),(16),(17),(18),(19),(20);
+select repeat('* ',21 - n) 
+from numbers order by n;
+
+
+/* by using CTE  */
+
+WITH RECURSIVE PatternCTE AS ( 
+    SELECT 20 AS RowNumber 
+    UNION ALL 
+    SELECT RowNumber - 1 
+    FROM PatternCTE 
+    WHERE RowNumber > 0 
+) 
+
+SELECT REPEAT('* ', RowNumber) AS Pattern 
+FROM PatternCTE;
+

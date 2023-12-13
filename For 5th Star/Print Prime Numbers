@@ -1,0 +1,22 @@
+/* Print all prime-numbers less than 1000. */
+
+with recursive CTEnumbers as(
+     select 2 as num
+     UNION ALL
+     select num + 1
+     from CTEnumbers
+     where num < 1000
+),
+
+CTEprime as(
+    select num as prime
+    from CTEnumbers
+    where NOT EXISTS (
+        select 1
+        from CTEnumbers CN
+        where (CN.num < CTEnumbers.num) and (CTEnumbers.num % CN.num = 0)
+    ) AND num > 1
+) 
+
+SELECT GROUP_CONCAT(prime ORDER BY prime SEPARATOR '&') AS result
+FROM CTEprime;

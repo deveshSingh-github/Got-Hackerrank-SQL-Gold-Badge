@@ -1,0 +1,24 @@
+
+with root as(
+    select N as rnd from BST 
+    Where P is null
+),
+
+middle as(
+    select N as ind from BST 
+    Where P NOT IN (select rnd from root)
+),
+
+leaf as(
+    select N as lnd from BST 
+    Where P IN (select ind from middle)
+)
+
+Select N, 
+      CASE
+        WHEN N in (select rnd from root) THEN "Root"  
+        WHEN N in (select lnd from leaf) THEN "Leaf" 
+        ELSE "Inner"
+        END as NodType
+    from BST
+    Order by N;
