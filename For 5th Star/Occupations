@@ -1,0 +1,15 @@
+-- First Method
+
+Select
+     MAX(CASE WHEN occupation = 'Doctor' THEN name END),
+     MAX(CASE WHEN occupation = 'Professor' THEN name END),
+     MAX(CASE WHEN occupation = 'Singer' THEN name END),
+     MAX(CASE WHEN occupation = 'Actor' THEN name END)
+     from (
+          select *, row_number() over(partition by occupation order by name) as rnk
+                  from occupations
+     ) as sub_table
+     group by sub_table.rnk;
+
+
+-- Second Method
